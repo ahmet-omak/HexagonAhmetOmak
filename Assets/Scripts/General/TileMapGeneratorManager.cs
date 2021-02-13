@@ -1,0 +1,61 @@
+﻿using UnityEngine;
+
+
+namespace Assest.Scripts.General
+{
+    public class TileMapGeneratorManager : MonoBehaviour
+    {
+        [SerializeField]
+        private int mapWidth;
+
+        [SerializeField]
+        private int mapHeight;
+
+        [SerializeField]
+        private GameObject hexagonPrefab;
+
+        [SerializeField]
+        private Color[] hexagonColors;
+
+        private Vector3 hexagonPosition;
+        private float hexagonXOffset = .8f;
+        private float hexagonYOffset = .9f;
+
+
+        private void Start()
+        {
+            GenerateTileMap();
+        }
+
+        //Generates a hexagon-based map
+        private void GenerateTileMap()
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
+                for (int y = 0; y < mapHeight; y++)
+                {
+                    float hexagonPositionY = y * hexagonYOffset;
+                    if (x % 2 == 0)
+                    {
+                        hexagonPositionY += hexagonYOffset / 2f;
+                    }
+                    SetHexagonPosition(x*hexagonXOffset, hexagonPositionY);
+                    SetHexagonColor();
+                    GameObject hexagon = Instantiate(hexagonPrefab, hexagonPosition, Quaternion.Euler(new Vector3(0f,0f,90f)));
+                    hexagon.gameObject.name = $"Hexagon [{x + 1},{y + 1}]";
+                    hexagon.transform.SetParent(this.transform);
+                }
+            }
+        }
+
+        private void SetHexagonPosition(float positionX,float positionY)
+        {
+            hexagonPosition = new Vector3(positionX, positionY, 0);
+        }
+
+        private void SetHexagonColor()
+        {
+            hexagonPrefab.GetComponent<SpriteRenderer>().color = hexagonColors[Random.Range(0, hexagonColors.Length)];
+        }
+    }
+}

@@ -173,7 +173,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 50
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 3, z: -10}
+  m_LocalPosition: {x: 2.81, y: 4.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1006033463}
   - component: {fileID: 1006033464}
   m_Layer: 0
-  m_Name: Map
+  m_Name: TileMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725603d05379931478f2411551d556a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 9
-  mapHeight: 8
+  mapWidth: 8
+  mapHeight: 9
   hexagonPrefab: {fileID: 8248948854249859078, guid: e7c4b6d90b79071408c6d148d419e2a1,
     type: 3}
+  hexagonColors:
+  - {r: 1, g: 0.009498768, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.14202738, a: 1}
+  - {r: 0, g: 1, b: 0.8853862, a: 1}
+  - {r: 0.96420634, g: 1, b: 0, a: 1}
+  - {r: 0.91115713, g: 0, b: 1, a: 1}
