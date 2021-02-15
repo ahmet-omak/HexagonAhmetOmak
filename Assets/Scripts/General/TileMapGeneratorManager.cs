@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Assest.Scripts.Hexagons;
+using UnityEngine;
 
 
 namespace Assest.Scripts.General
 {
     public class TileMapGeneratorManager : MonoBehaviour
     {
+        [Header("TileMap Properties")]
         [SerializeField]
         private int mapWidth;
 
@@ -20,7 +22,6 @@ namespace Assest.Scripts.General
         private Vector3 hexagonPosition;
         private float hexagonXOffset = .8f;
         private float hexagonYOffset = .9f;
-
 
         private void Start()
         {
@@ -41,8 +42,11 @@ namespace Assest.Scripts.General
                     }
                     SetHexagonPosition(x*hexagonXOffset, hexagonPositionY);
                     SetHexagonColor();
+                    hexagonPrefab.GetComponent<Hexagon>().X = x;
+                    hexagonPrefab.GetComponent<Hexagon>().Y = y;
                     GameObject hexagon = Instantiate(hexagonPrefab, hexagonPosition, Quaternion.Euler(new Vector3(0f,0f,90f)));
-                    hexagon.gameObject.name = $"Hexagon [{x + 1},{y + 1}]";
+                    GridManager.grid[x,y] = hexagon.transform;
+                    hexagon.gameObject.name = $"Hexagon [{x}{y}]";
                     hexagon.transform.SetParent(this.transform);
                 }
             }
