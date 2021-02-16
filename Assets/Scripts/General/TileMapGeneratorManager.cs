@@ -23,6 +23,9 @@ namespace Assest.Scripts.General
         private float hexagonXOffset = .8f;
         private float hexagonYOffset = .9f;
 
+        public int MapWidth { get { return mapWidth; } set { mapWidth = value; } }
+        public int MapHeight { get { return mapHeight; } set { mapHeight = value; } } 
+
         private void Start()
         {
             GenerateTileMap();

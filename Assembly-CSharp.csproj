@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\General\GridManager.cs" />
     <Compile Include="Assets\Scripts\General\TileMapGeneratorManager.cs" />
     <Compile Include="Assets\Scripts\Hexagons\Hexagon.cs" />
+    <Compile Include="Assets\Scripts\Hexagons\HexagonManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Users/ahmet/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Visual Studio Code/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

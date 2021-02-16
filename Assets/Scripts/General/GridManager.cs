@@ -6,14 +6,17 @@ namespace Assest.Scripts.General
     {
         public static Transform[,] grid;
 
-        [SerializeField]
         private int gridWidth;
 
-        [SerializeField]
         private int gridHeight;
+
+        private TileMapGeneratorManager tileMap;
 
         private void Awake()
         {
+            tileMap = FindObjectOfType<TileMapGeneratorManager>();
+            gridWidth = tileMap.MapWidth;
+            gridHeight = tileMap.MapHeight;
             grid = new Transform[gridWidth, gridHeight];
         }
     }
