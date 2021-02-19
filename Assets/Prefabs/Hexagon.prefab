@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6462591859412886967}
   - component: {fileID: 291611577148323}
-  - component: {fileID: 1166511961473803622}
   - component: {fileID: 5585358149512111111}
   - component: {fileID: 6418367604112682090}
+  - component: {fileID: 8348389587458304416}
   m_Layer: 8
   m_Name: Hexagon
   m_TagString: Untagged
@@ -65,27 +65,6 @@ PolygonCollider2D:
       - {x: 0.0029390147, y: -0.6529888}
       - {x: 0.5838427, y: -0.31738994}
       - {x: 0.58423316, y: 0.33364582}
---- !u!50 &1166511961473803622
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8248948854249859078}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &5585358149512111111
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f6d547c879dfad04ba74db4f6c755c10, type: 3}
-  m_Color: {r: 0.91115713, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.009498768, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -151,3 +130,24 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5585358149512111111}
   x: 7
   y: 8
+--- !u!50 &8348389587458304416
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248948854249859078}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

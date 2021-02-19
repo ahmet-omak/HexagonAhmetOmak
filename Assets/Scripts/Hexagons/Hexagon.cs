@@ -17,10 +17,10 @@ namespace Assest.Scripts.Hexagons
         private int y;
 
         private HexagonManager hexagonManager;
+
         public int X { get { return x; } set { x = value; } }
         public int Y { get { return y; } set { y = value; } }
         public SpriteRenderer SpriteRenderer { get { return spriteRenderer; } set { spriteRenderer = value; } }
-
 
         private void Awake()
         {
