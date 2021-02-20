@@ -24,7 +24,8 @@ namespace Assest.Scripts.General
         private float hexagonYOffset = .9f;
 
         public int MapWidth { get { return mapWidth; } set { mapWidth = value; } }
-        public int MapHeight { get { return mapHeight; } set { mapHeight = value; } } 
+        public int MapHeight { get { return mapHeight; } set { mapHeight = value; } }
+        public Color[] HexagonColors { get { return hexagonColors; } }
 
         private void Start()
         {
@@ -43,19 +44,19 @@ namespace Assest.Scripts.General
                     {
                         hexagonPositionY += hexagonYOffset / 2f;
                     }
-                    SetHexagonPosition(x*hexagonXOffset, hexagonPositionY);
+                    SetHexagonPosition(x * hexagonXOffset, hexagonPositionY);
                     SetHexagonColor();
                     hexagonPrefab.GetComponent<Hexagon>().X = x;
                     hexagonPrefab.GetComponent<Hexagon>().Y = y;
-                    GameObject hexagon = Instantiate(hexagonPrefab, hexagonPosition, Quaternion.Euler(new Vector3(0f,0f,90f)));
-                    GridManager.grid[x,y] = hexagon.transform;
+                    GameObject hexagon = Instantiate(hexagonPrefab, hexagonPosition, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
+                    GridManager.grid[x, y] = hexagon.transform;
                     hexagon.gameObject.name = $"Hexagon [{x}{y}]";
                     hexagon.transform.SetParent(this.transform);
                 }
             }
         }
 
-        private void SetHexagonPosition(float positionX,float positionY)
+        private void SetHexagonPosition(float positionX, float positionY)
         {
             hexagonPosition = new Vector3(positionX, positionY, 0);
         }

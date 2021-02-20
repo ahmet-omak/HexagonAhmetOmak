@@ -14,13 +14,13 @@ namespace Assest.Scripts.General
 
         private TileMapGeneratorManager tileMap;
 
-        [SerializeField] private GameObject hexagonPrefab;
-
         private void Awake()
         {
             tileMap = FindObjectOfType<TileMapGeneratorManager>();
+
             gridWidth = tileMap.MapWidth;
             gridHeight = tileMap.MapHeight;
+
             grid = new Transform[gridWidth, gridHeight];
         }
 
@@ -32,7 +32,7 @@ namespace Assest.Scripts.General
                 {
                     if (!grid[i, j].GetComponent<Hexagon>().gameObject.activeSelf)
                     {
-                        yield return new WaitForSeconds(.6f);
+                        yield return new WaitForSeconds(.5f);
                         grid[i, j].GetComponent<Hexagon>().gameObject.SetActive(true);
                     }
                 }

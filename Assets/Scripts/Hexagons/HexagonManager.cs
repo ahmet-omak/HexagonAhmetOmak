@@ -7,22 +7,41 @@ namespace Assets.Scripts.Hexagons
 {
     class HexagonManager : MonoBehaviour
     {
-        private int[] xFactorsOf, yFactorsOf;
-        private int mapWidth = 8;
-        private int mapHeight = 9;
+        private int[] oddXFactorsOf, oddYFactorsOf, evenXFactorsOf, evenYFactorsOf, xFactorsOf, yFactorsOf;
+        private int mapWidth;
+        private int mapHeight;
 
+        private TileMapGeneratorManager mapGenerator;
 
         private void Awake()
         {
-            xFactorsOf = new int[] { 0, 1, 1, 0, -1, -1, 0 };
-            yFactorsOf = new int[] { 1, 0, -1, -1, -1, 0, 1 };
+            mapGenerator = FindObjectOfType<TileMapGeneratorManager>();
+
+            oddXFactorsOf = new int[] { 0, 1, 1, 0, -1, -1, 0 };
+            oddYFactorsOf = new int[] { 1, 0, -1, -1, -1, 0, 1 };
+
+            evenXFactorsOf = new int[] { 0, 1, 1, 0, -1, -1, 1 };
+            evenYFactorsOf = new int[] { 1, 1, 0, -1, 0, 1, 0 };
+
+            mapWidth = mapGenerator.MapWidth;
+            mapHeight = mapGenerator.MapHeight;
         }
 
         public void PickNeighbours(Hexagon hexagon)
         {
+            if (hexagon.X % 2 == 1)
+            {
+                xFactorsOf = oddXFactorsOf;
+                yFactorsOf = oddYFactorsOf;
+            }
+            else
+            {
+                xFactorsOf = evenXFactorsOf;
+                yFactorsOf = evenYFactorsOf;
+            }
             List<Hexagon> selectedHexagons;
             int x1, y1, x2, y2;
-            for (int i = 0; i < xFactorsOf.Length - 1; i++)
+            for (int i = 0; i < oddXFactorsOf.Length - 1; i++)
             {
                 x1 = xFactorsOf[i];
                 y1 = yFactorsOf[i];
@@ -56,14 +75,21 @@ namespace Assets.Scripts.Hexagons
         {
             for (int i = 0; i < selectedHexagons.Count; i++)
             {
-                if (selectedHexagons[i].Y >= 0 && GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<SpriteRenderer>().color
+                if (selectedHexagons[i].Y - 1 >= 0 && GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<SpriteRenderer>().color
                          == GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<SpriteRenderer>().color)
                 {
                     GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>().gameObject.SetActive(false);
+                    ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>());
                     GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>().gameObject.SetActive(false);
+                    ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>());
                     StartCoroutine(FindObjectOfType<GridManager>().FillGrid());
                 }
             }
+        }
+
+        private void ChangeHexagonColor(Hexagon hexagon)
+        {
+            hexagon.GetComponent<SpriteRenderer>().color = mapGenerator.HexagonColors[Random.Range(0, mapGenerator.HexagonColors.Length)];
         }
     }
 }
