@@ -2,7 +2,6 @@
 using Assets.Scripts.Hexagons;
 using UnityEngine;
 
-
 namespace Assest.Scripts.Hexagons
 {
     public class Hexagon : MonoBehaviour
@@ -35,7 +34,7 @@ namespace Assest.Scripts.Hexagons
 
         private Hexagon GetSelectedHexagon()
         {
-            return GridManager.grid[x, y].GetComponent<Hexagon>();
+            return gameObject.GetComponent<Hexagon>();
         }
     }
 }

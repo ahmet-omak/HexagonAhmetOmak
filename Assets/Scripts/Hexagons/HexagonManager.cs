@@ -69,6 +69,7 @@ namespace Assets.Scripts.Hexagons
             selectedHexagons[2].SpriteRenderer.color = selectedHexagons[0].SpriteRenderer.color;
             selectedHexagons[0].SpriteRenderer.color = temporarayHexagonColor;
             CheckHexagons(selectedHexagons);
+            CheckHexagons(selectedHexagons);
         }
 
         private void CheckHexagons(List<Hexagon> selectedHexagons)
