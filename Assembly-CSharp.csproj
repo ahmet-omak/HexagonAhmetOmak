@@ -66,8 +66,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\General\GridManager.cs" />
     <Compile Include="Assets\Scripts\General\LogManager.cs" />
-    <Compile Include="Assets\Scripts\General\MenuManager.cs" />
     <Compile Include="Assets\Scripts\General\TileMapGeneratorManager.cs" />
+    <Compile Include="Assets\Scripts\General\UIManager.cs" />
     <Compile Include="Assets\Scripts\Hexagons\Hexagon.cs" />
     <Compile Include="Assets\Scripts\Hexagons\HexagonManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

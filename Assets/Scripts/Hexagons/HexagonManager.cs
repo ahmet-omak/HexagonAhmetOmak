@@ -12,10 +12,14 @@ namespace Assets.Scripts.Hexagons
         private int mapHeight;
 
         private TileMapGeneratorManager mapGenerator;
+        
+        private UIManager uIManager;
 
         private void Awake()
         {
             mapGenerator = FindObjectOfType<TileMapGeneratorManager>();
+
+            uIManager = FindObjectOfType<UIManager>();
 
             oddXFactorsOf = new int[] { 0, 1, 1, 0, -1, -1, 0 };
             oddYFactorsOf = new int[] { 1, 0, -1, -1, -1, 0, 1 };
@@ -27,8 +31,14 @@ namespace Assets.Scripts.Hexagons
             mapHeight = mapGenerator.MapHeight;
         }
 
+        private void Update()
+        {
+            uIManager.GameOver();   
+        }
+
         public void PickNeighbours(Hexagon hexagon)
         {
+            uIManager.DecreaseMoveCount();
             if (hexagon.X % 2 == 1)
             {
                 xFactorsOf = oddXFactorsOf;
@@ -83,6 +93,7 @@ namespace Assets.Scripts.Hexagons
                     ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>());
                     GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>().gameObject.SetActive(false);
                     ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>());
+                    uIManager.AddScore();
                     StartCoroutine(FindObjectOfType<GridManager>().FillGrid());
                 }
             }
