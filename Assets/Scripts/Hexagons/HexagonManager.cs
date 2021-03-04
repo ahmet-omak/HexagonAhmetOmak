@@ -11,13 +11,13 @@ namespace Assets.Scripts.Hexagons
         private int mapWidth;
         private int mapHeight;
 
-        private TileMapGeneratorManager mapGenerator;
+        private MapGenaratorController mapGenerator;
         
         private UIManager uIManager;
 
         private void Awake()
         {
-            mapGenerator = FindObjectOfType<TileMapGeneratorManager>();
+            mapGenerator = FindObjectOfType<MapGenaratorController>();
 
             uIManager = FindObjectOfType<UIManager>();
 
@@ -61,9 +61,9 @@ namespace Assets.Scripts.Hexagons
                     && (x2 + hexagon.X >= 0 && x2 + hexagon.X < mapWidth) && (y2 + hexagon.Y >= 0 && y2 + hexagon.Y < mapHeight))
                 {
                     selectedHexagons = new List<Hexagon>();
-                    selectedHexagons.Add(GridManager.grid[hexagon.X, hexagon.Y].GetComponent<Hexagon>());
-                    selectedHexagons.Add(GridManager.grid[x1 + hexagon.X, y1 + hexagon.Y].GetComponent<Hexagon>());
-                    selectedHexagons.Add(GridManager.grid[x2 + hexagon.X, y2 + hexagon.Y].GetComponent<Hexagon>());
+                    selectedHexagons.Add(GridController.grid[hexagon.X, hexagon.Y].GetComponent<Hexagon>());
+                    selectedHexagons.Add(GridController.grid[x1 + hexagon.X, y1 + hexagon.Y].GetComponent<Hexagon>());
+                    selectedHexagons.Add(GridController.grid[x2 + hexagon.X, y2 + hexagon.Y].GetComponent<Hexagon>());
                     SwitchHexagons(selectedHexagons);
                     return;
                 }
@@ -86,15 +86,15 @@ namespace Assets.Scripts.Hexagons
         {
             for (int i = 0; i < selectedHexagons.Count; i++)
             {
-                if (selectedHexagons[i].Y - 1 >= 0 && GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<SpriteRenderer>().color
-                         == GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<SpriteRenderer>().color)
+                if (selectedHexagons[i].Y - 1 >= 0 && GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<SpriteRenderer>().color
+                         == GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<SpriteRenderer>().color)
                 {
-                    GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>().gameObject.SetActive(false);
-                    ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>());
-                    GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>().gameObject.SetActive(false);
-                    ChangeHexagonColor(GridManager.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>());
+                    GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>().gameObject.SetActive(false);
+                    ChangeHexagonColor(GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y].GetComponent<Hexagon>());
+                    GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>().gameObject.SetActive(false);
+                    ChangeHexagonColor(GridController.grid[selectedHexagons[i].X, selectedHexagons[i].Y - 1].GetComponent<Hexagon>());
                     uIManager.AddScore();
-                    StartCoroutine(FindObjectOfType<GridManager>().FillGrid());
+                    StartCoroutine(FindObjectOfType<GridController>().FillGrid());
                 }
             }
         }

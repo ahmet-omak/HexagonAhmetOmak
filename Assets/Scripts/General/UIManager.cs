@@ -5,16 +5,10 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI textMesh;
+    [SerializeField] private TextMeshProUGUI textMesh;
 
     private int moveCount = 5;
     private int score = 0;
-
-    private void Awake()
-    {
-        textMesh.text = $"Score:{score}";
-    }
 
     public void DecreaseMoveCount()
     {
@@ -47,12 +41,11 @@ public class UIManager : MonoBehaviour
     }
     public void Play()
     {
-        LogManager.Log("Playing");
         SceneManager.LoadScene(1);
+        textMesh.text = $"Score:{score}";
     }
     public void Quit()
     {
-        LogManager.Log("Quitting");
         Application.Quit();
     }
 }
